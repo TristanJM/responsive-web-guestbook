@@ -1,0 +1,764 @@
+/*
+Tristan Murfitt - B418521
+Loughborough University
+
+Colour Palette:
+White - #feffff ;
+Blue - #98dafc ;
+Brown - #daad86 ;
+Grey - #312c32 ;
+
+Media queries:
+320-480px 
+481-780px 
+>780px
+>1280px
+*/
+
+body {
+	font-family:'Open Sans', Verdana, Geneva, sans-serif;
+}
+
+/* Header Styles */
+header {
+	display:block; /* For incompatibility with older browsers */
+	height:100px;
+	background-color:#312c32;
+	text-align:center;
+}
+#header-left {
+	background-color:rgba(255,255,255,0.1);
+	display:block;
+	width:20%;
+	float:left;
+	height:100%;
+	text-align:left;
+	padding:0;
+}
+#header-right {
+	display:block;
+	width:80%;
+	height:100%;
+	float:right;
+	padding:0;
+}
+.helper {	/* To align image vertically centered in header */
+  display:inline-block;
+  height:100%;
+  vertical-align:middle;
+}
+#lu-logo-header {
+	/* Image: 400px width, 100px height */
+	max-height:80px;
+	max-width:320px;
+	width:90%;
+	color:#feffff;
+	vertical-align:middle;
+	margin:0;
+}
+#header-title {
+	vertical-align:middle;
+	text-align:center;
+	color:#feffff;
+	text-shadow:none;
+	font-size:1.4em;
+	margin:0 6px;
+}
+
+/* Navigation Styles */
+nav {
+	background-color:#98dafc;
+	display:block;
+	text-shadow:none;
+	min-height:50px;
+	height:auto;
+}
+nav ul {
+	list-style:none;
+	margin:0;
+	padding-left:0px;
+	text-align:center;
+}
+nav ul li {
+	display:inline-block;
+	padding: 14px 0 15px;
+	width:19%;
+	text-align:center;
+	margin-left:-5px;
+	transition: background-color 0.2s;
+	-o-transition-duration: background-color 0.2s;
+	-moz-transition-duration: background-color 0.2s;
+	-webkit-transition-duration: background-color 0.2s;
+	background-color:#98dafc;
+	border-left:1px solid #B8E7FF;
+}
+#nav-last {
+	border-right:1px solid #B8E7FF;
+}
+nav ul li:hover {
+	cursor:pointer;
+	background-color:#D1EFFF;
+}
+#nav-menu-icon {
+	display:none;
+	float:right;
+	margin-right:20px;
+	margin-top:-40px; /* -32px for fa-lg */
+	color:#312c32;
+	cursor:pointer;
+	padding:1px;
+}
+#nav-menu-icon:hover {
+	transition-duration:0.1s;
+	color:rgba(49,44,50,0.8);
+}
+
+/* Section 1 */
+#info-section {
+	min-height:250px;
+	height:auto;
+	overflow:hidden;
+	background-color:#feffff;
+	position:relative;
+}
+#info-section-image {
+	width:60%;
+	max-width:2560px;
+	float:left;
+}
+#info-section picture {
+	height:100%;
+}
+#large-hero-image {
+	display:block;
+	width:100%;
+	height:auto;
+}
+#info-section-details {
+	width:40%;
+	min-height:100px;
+	height:100%;
+	position:absolute;
+	right:0;
+	transform:skewX(-8deg);
+	-o-transform:skewX(-8deg);
+	-ms-transform:skewX(-8deg);
+	-moz-transform:skewX(-8deg);
+	-webkit-transform:skewX(-8deg);
+	text-shadow:none;
+}
+#info-section-slant {
+	position:absolute;
+	width:50%;
+	right:0;
+	height:100%;
+	background-color:#feffff;
+	transform: skewX(-8deg) translateX(15%);
+	-o-transform: skewX(-8deg) translateX(15%);
+	-moz-transform: skewX(-8deg) translateX(15%);
+	-webkit-transform: skewX(-8deg) translateX(15%);
+}
+#info-about {
+	/*height:40%;*/
+	position:relative;
+	padding-top:3%;
+	overflow:hidden;
+}
+#info-objectives {
+	/*height:60%;*/
+	position:relative;
+	overflow:hidden;
+	padding:0;
+}
+#about-text,#objectives-text {
+	font-weight:700;
+	font-size:1.1em;
+	color:#98dafc;
+}
+#info-section-details p {
+	max-width:90%;
+}
+#info-section-details p span {
+	font-weight:700;
+}
+#info-objectives .fa-ul > li {
+	margin-left:-10px;
+	max-width:94%;
+	margin-top:1%;
+}
+
+/* Section 2 (events) */
+#events-section {
+	background-color:#daad86;
+	display:block;
+	text-shadow:none;
+	padding:3% 3%;
+	position:relative;
+	z-index:200;
+}
+#events-text {
+	color:#feffff;
+	font-weight:700;
+	font-size:1.4em;
+}
+table {
+	border-collapse:collapse;
+	width:100%;
+	margin:1em 0;
+}
+thead tr {
+	-o-box-shadow: 1px 0 0 #F0FAFA inset;
+	-moz-box-shadow: 1px 0 0 #F0FAFA inset;
+	-webkit-box-shadow: 1px 0 0 #F0FAFA inset;
+	box-shadow: 1px 0 0 #F0FAFA inset;
+  border-top: 1px solid #F0FAFA;
+}
+th,td {
+	padding:1em 1.5em;
+}
+th {
+	background-color:#98dafc;
+	color:#feffff;
+	border-right: 1px solid #F0FAFA;
+}
+tr:nth-child(even) {
+	background-color:#feffff;
+}
+tr:nth-child(odd) {
+	background-color:#F0FAFA;
+}
+
+/* Section 3 (updates) */
+#updates-section {
+	background-color:#feffff;
+	display:block;
+	text-shadow:none;
+	padding:3% 3%;
+	position:relative;
+}
+#updates-text {
+	color:#312c32;
+	font-weight:700;
+	font-size:1.4em;
+}
+#updates-section .fa-ul {
+	position: relative;
+  z-index: 1000;
+}
+#updates-section .fa-ul li {
+	font-size:1.3em;
+	margin-bottom:0.3em;
+	color:#312c32;
+}
+#updates-section .fa-ul li i {
+	margin-top:5px;
+}
+#updates-section .fa-ul li span {
+	color:#98dafc;
+}
+#updates-section .update-info {
+	margin-bottom:1em;
+	color:#312c32;
+	opacity:0.95;
+}
+
+/* Section 4 (weather) */
+#weather-section {
+	background-color:#98dafc;
+	display:block;
+	min-height:100px;
+	text-shadow:none;
+	padding:3% 3%;
+	text-align:center;
+}
+#cloud-cluster-2 {
+	float:right;
+	transform:scale(1.2) translateY(0.8vw);
+	-o-transform:scale(1.2) translateY(0.8vw);
+	-ms-transform:scale(1.2) translateY(0.8vw);
+	-moz-transform:scale(1.2) translateY(0.8vw);
+	-webkit-transform:scale(1.2) translateY(0.8vw);
+}
+.cloud {
+	background-color:#feffff;
+	position:relative;
+}
+.c1 {
+	box-shadow: -1vw -2vw 0 0 #EEEBF7 inset;
+	height:15vw;
+	margin-top:-12vw;
+	width:15vw;
+	border-radius:15vw / 15vw;
+	z-index:350;
+}
+.c2 {
+	box-shadow: -0.5vw -1vw 0 0 #EEEBF7 inset;
+	height:10vw;
+	margin-top:-12vw;
+	margin-left:10vw;
+	width:10vw;
+	border-radius:10vw / 10vw;
+	z-index:350;
+}
+.c3 {
+	box-shadow: -0.2vw -0.5vw 0 0 #EEEBF7 inset;
+	height:4vw;
+	margin-top:-6vw;
+	margin-left:-2.5vw;
+	width:4vw;
+	border-radius:4vw / 4vw;
+	z-index:200;
+}
+.c4 {
+	box-shadow: -0.1vw -0.7vw 0 0 #EEEBF7 inset;
+	height:8vw;
+	margin-top:-8vw;
+	margin-left:2vw;
+	width:8vw;
+	border-radius:8vw / 8vw;
+	z-index:350;
+}
+.c5 {
+	box-shadow: -0.2vw -0.5vw 0 0 #EEEBF7 inset;
+	height:4vw;
+	margin-top:-5vw;
+	margin-right:10vw;
+	margin-left:0;
+	width:4vw;
+	border-radius:4vw / 4vw;
+	z-index:350;
+}
+.c6 {
+	box-shadow: -0.1vw -0.2vw 0 0 #EEEBF7 inset;
+	height:2vw;
+	margin-top:-3vw;
+	margin-left:-1vw;
+	width:2vw;
+	border-radius:2vw;
+	z-index:200;
+}
+.c7 {
+	box-shadow:-0.1vw -0.3vw 0 0 #eeebf7 inset;
+	height:3vw;
+	margin-left:9vw;
+	margin-top:-3vw;
+	width:3vw;
+	border-radius:2vw;
+	z-index:400;
+}
+.sun {
+	background-color:yellow;
+	height:15vw;
+	margin-top:-12vw;
+	margin-right:8vw;
+	width:15vw;
+	border-radius:15vw / 15vw;
+	z-index:10;
+	float:right;
+}
+/* Simple Weather */
+.weather {
+  width: 50%;
+  margin: 0px auto;
+  text-align: center;
+  text-transform: uppercase;
+}
+#weather2 {
+	margin-bottom:2em;
+}
+.weather h2 {
+  margin:0 0 8px;
+  color:#feffff;
+  font-size:10em;
+  font-weight:300;
+  text-align:center;
+  text-shadow:0px 1px 3px rgba(0, 0, 0, 0.15);
+}
+.weather ul {
+	margin:0 0 0 -30%;
+	padding:0;
+	width:160%;
+}
+.weather li {
+  background:rgba(254,255,255,0.9);
+  padding:1em;
+  display:inline-block;
+  border-radius: 5px;
+	color:#312c32;
+}
+.weather .currently {
+  margin: 0 20px;
+}
+#weather-spinner {
+	display:none;
+	color:#feffff;
+  margin-top: 1em;
+}
+.hr {
+	width:40%;
+	background-color:#feffff;
+	height:1px;
+	margin-top:4em;
+	margin-left:auto;
+	margin-right:auto;
+}
+.js-geolocation {
+	color:#feffff;
+	font-size:1.2em;
+	margin-top:3em;
+	width:40%;
+	margin-left:auto;
+	margin-right:auto;
+	transition-duration:0.2s;
+	-o-transition-duration:0.2s;
+	-moz-transition-duration:0.2s;
+	-webkit-transition-duration:0.2s;
+}
+.js-geolocation:hover {
+	color:#312c32;
+	cursor:pointer;
+}
+
+/* Footer Styles */
+footer {
+	display:block; /* For incompatibility with older browsers */
+	height:30px;
+	background-color:#312c32;
+	text-shadow:none;
+	color:#feffff;
+	padding-top: 15px;
+	text-align: center;
+}
+footer p {
+	margin:0;
+	opacity:0.8;
+	font-size:0.8em;
+}
+
+/* Content Similar to HD TV */
+@media only screen and (min-width: 1281px) {
+	#info-section-image {
+		width:70%;
+	}
+	#info-section-details {
+		width:30%;
+	}
+	#info-section-slant {
+		width:40%;
+		transform: skewX(-8deg) translateX(18%);
+		-o-transform: skewX(-8deg) translateX(18%);
+		-ms-transform: skewX(-8deg) translateX(18%);
+		-moz-transform: skewX(-8deg) translateX(18%);
+		-webkit-transform: skewX(-8deg) translateX(18%);
+	}
+	#info-about {
+		padding-top:5%;
+	}
+	#info-objectives {
+		padding:5% 0;
+	}
+	#info-objectives .fa-ul {
+		margin-left:3em;
+	}
+	#info-objectives .fa-ul > li {
+		margin-left:-10px;
+		margin-top:6%;
+		font-size:1.3em;
+	}
+	#info-about p {
+		font-size:1.3em;
+	}
+	#about-text,#objectives-text {
+		font-size:1.3em;
+	}
+	#weather ul {
+		margin:0;
+		width:100%;
+	}
+}
+
+/* Extra Query between 900px width and 781px to fix objectives section */
+@media only screen and (min-width: 781px) and (max-width: 900px) {
+	#info-section-details p {
+		margin: 3% 0;
+	}
+	#info-objectives .fa-ul {
+		margin-top:3%;
+	}
+	#info-objectives .fa-ul li {
+		font-size:90%;
+	}
+}
+
+/* Content Similar to 'Mobile Landscape' or 'Tablet' */
+@media only screen and (min-width: 481px) and (max-width: 780px) {
+	#header-left {
+		text-align:center;
+	}
+	#lu-logo-header {
+		width:auto;
+		height:auto;
+		min-width:30px;
+		margin-left:-5px;
+	}
+	#helper-title {
+		height:60%;
+	}
+	#info-section-image {
+		width:100%;
+		float:none;
+	}
+	#info-section-details {
+		width:100%;
+		position:relative;
+		transform:none;
+		-o-transform:none;
+		-ms-transform:none;
+		-moz-transform:none;
+		-webkit-transform:none;
+	}
+	#info-section-slant {
+    transform: skewY(2deg) translateY(-3%);
+		-o-transform: skewY(2deg) translateY(-3%);
+		-ms-transform: skewY(2deg) translateY(-3%);
+		-moz-transform: skewY(2deg) translateY(-3%);
+		-webkit-transform: skewY(2deg) translateY(-3%);
+    width: 100%;
+	}
+	#info-about {
+		padding-left:3%;
+		padding-top:1px;
+	}
+	#info-objectives {
+		padding-left:3%;
+		padding-bottom:2%;
+		margin-top:2%;
+	}	
+	/* Events Table */
+	table, thead, tbody, th, td, tr {
+		display:block;
+	}
+	thead tr {
+		position:absolute; /* Not display:none; for accessibility reasons */
+		top:-9999px;
+		left:-9999px;
+	}
+	tr {
+		margin-top:1em;
+	}
+	td:nth-child(even) {
+		background-color:#F0FAFA;
+	}
+	td:nth-child(odd) {
+		background-color:#feffff;
+	}
+	td {
+		border:none;
+		position:relative;
+		padding-left:40%;
+	}
+	td:first-child {	/* New headers ie. Event - Name */
+		background-color: #98dafc;
+		border-top: 1px solid #F0FAFA;
+		border-right: 1px solid #F0FAFA;
+		box-shadow: 1px 0 0 #F0FAFA inset;
+		-o-box-shadow: 1px 0 0 #F0FAFA inset;
+		-moz-box-shadow: 1px 0 0 #F0FAFA inset;
+		-webkit-box-shadow: 1px 0 0 #F0FAFA inset;
+		padding-top:1em;		
+		color:#feffff;
+		font-weight:700;
+	}
+	td:before {
+		position: absolute;
+		left:2em;
+	}
+	td:nth-of-type(1):before { content:"Event"; }
+	td:nth-of-type(2):before { content:"Time"; }
+	td:nth-of-type(3):before { content:"Venue"; }
+	td:nth-of-type(4):before { content:"Price"; }
+	td:nth-of-type(5):before { content:"Description"; }
+	/* End of Events Table */
+	#updates-text, #events-text {
+		font-size:1.2em;
+	}
+	#updates-section .fa-ul li {
+		font-size:1.1em;
+	}
+	#weather {
+		margin-top:2vw;
+	}
+	.weather h2 {
+		font-size:7em;
+	}
+	.weather li, .weather .currently {
+		margin-bottom:1em;
+		display: block;
+		margin-left:0;
+		margin-right:0;
+		font-size:0.9em;
+	}
+	.weather ul {
+    margin: 0 auto;
+    width: 70%;
+	}
+	#cloud-cluster-1 {
+		margin-left:23vw;
+		transform:scale(1.6) translateY(-1vw);
+		-o-transform:scale(1.6) translateY(-1vw);
+		-ms-transform:scale(1.6) translateY(-1vw);
+		-moz-transform:scale(1.6) translateY(-1vw);
+		-webkit-transform:scale(1.6) translateY(-1vw);
+	}
+	#cloud-cluster-2 {
+		margin-right:-2vw;
+		transform:scale(2) translateY(1.4vw);
+		-o-transform:scale(2) translateY(1.4vw);
+		-ms-transform:scale(2) translateY(1.4vw);
+		-moz-transform:scale(2) translateY(1.4vw);
+		-webkit-transform:scale(2) translateY(1.4vw);
+	}
+}
+
+/* Content Similar to 'Mobile Portrait' */
+@media only screen and (max-width: 480px){
+	#header-left {
+		display:none;
+	}
+	#header-right {
+		width:100%;
+	}
+	#helper-title {
+		height:60%;
+	}
+	#header-title {
+		font-size:1.1em;
+	}
+	nav ul li {
+		display:block;
+		width:100%;
+		border-left:none;
+		border-right:none;
+		margin-left:0;
+	}
+	#nav-last {
+		border-right:none;
+	}
+	#nav-menu-icon {
+		display:inline;
+	}
+	#info-section-image {
+		width:100%;
+		float:none;
+	}
+	#info-section-details {
+		width:100%;
+		position:relative;
+		-o-transform:none;
+		-ms-transform:none;
+		-moz-transform:none;
+		-webkit-transform:none;
+	}
+	#info-section-slant {
+		transform: skewY(2deg) translateY(-3%);
+		-o-transform: skewY(2deg) translateY(-3%);
+		-ms-transform: skewY(2deg) translateY(-3%);
+		-moz-transform: skewY(2deg) translateY(-3%);
+		-webkit-transform: skewY(2deg) translateY(-3%);
+    width: 100%;
+	}
+	#info-about {
+		padding-left:3%;
+		padding-top:1px;
+	}
+	#info-objectives {
+		padding-left:3%;
+		padding-bottom:2%;
+		margin-top:2%;
+	}
+	/* Events Table */
+	table, thead, tbody, th, td, tr {
+		display:block;
+	}
+	thead tr {
+		position:absolute; /* Not display:none; for accessibility reasons */
+		top:-9999px;
+		left:-9999px;
+	}
+	tr {
+		margin-top:1em;
+	}
+	td:nth-child(even) {
+		background-color:#F0FAFA;
+	}
+	td:nth-child(odd) {
+		background-color:#feffff;
+	}
+	td {
+		border:none;
+		position:relative;
+		padding-left:40%;
+	}
+	td:first-child {	/* New headers ie. Event - Name */
+		background-color:#98dafc;
+		border-top: 1px solid #F0FAFA;
+		border-right: 1px solid #F0FAFA;
+		box-shadow: 1px 0 0 #F0FAFA inset;
+		-o-box-shadow: 1px 0 0 #F0FAFA inset;
+		-moz-box-shadow: 1px 0 0 #F0FAFA inset;
+		-webkit-box-shadow: 1px 0 0 #F0FAFA inset;
+		padding-top:1em;		
+		color:#feffff;
+		font-weight:700;
+	}
+	td:before {
+		position: absolute;
+		left:1em;
+	}
+	td:nth-of-type(1):before { content:"Event"; }
+	td:nth-of-type(2):before { content:"Time"; }
+	td:nth-of-type(3):before { content:"Venue"; }
+	td:nth-of-type(4):before { content:"Price"; }
+	td:nth-of-type(5):before { content:"Description"; }
+	/* End of Events Table */
+	#updates-text, #events-text {
+		font-size:1.2em;
+	}
+	#updates-section .fa-ul li {
+		font-size:1.1em;
+	}
+	#weather {
+		margin-top:5vw;
+	}
+	.weather h2 {
+		font-size:7em;
+	}
+	.weather li, .weather .currently {
+		margin-bottom:1em;
+		display: block;
+		margin-left:0;
+		margin-right:0;
+		font-size:0.8em;
+	}
+	.weather ul {
+    margin: 0 auto;
+    width: 90%;
+	}
+	#cloud-cluster-1 {
+		margin-left:29vw;
+		margin-bottom:1vw;
+		transform:scale(1.8) translateY(-1vw);
+		-o-transform:scale(1.8) translateY(-1vw);
+		-ms-transform:scale(1.8) translateY(-1vw);
+		-moz-transform:scale(1.8) translateY(-1vw);
+		-webkit-transform:scale(1.8) translateY(-1vw);
+	}
+	#cloud-cluster-2 {
+		margin-right:-2vw;
+		transform:scale(2) translateY(1.4vw);
+		-o-transform:scale(2) translateY(1.4vw);
+		-ms-transform:scale(2) translateY(1.4vw);
+		-moz-transform:scale(2) translateY(1.4vw);
+		-webkit-transform:scale(2) translateY(1.4vw);
+	}
+}

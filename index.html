@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+	
+<head>
+	<!-- Meta data -->
+	<meta charset="UTF-8">
+	<meta name="description" content="Responsive Web Design coursework - Loughborough University">
+	<meta name="keywords" content="HTML,CSS,JavaScript,jQuery,responsive,mobile,portable,Loughborough,Tristan,Murfitt">
+	<meta name="author" content="Tristan Murfitt - B418521">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- Dependencies -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script> //Fix issues with jquery mobile on chrome throwing error
+    $(document).bind('mobileinit',function(){
+        $.mobile.changePage.defaults.changeHash = false;
+        $.mobile.hashListeningEnabled = false;
+        $.mobile.pushStateEnabled = false;
+    });
+	</script> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+	<script src="scripts/index-script.js"></script>
+	<script src="simpleweather-v3.1/jquery.simpleWeather.js"></script>
+	
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'> <!-- Google Font 'Open Sans' -->
+	<link rel="stylesheet" href="styles/font-awesome.min.css"> <!-- Font Awesome icons -->
+	<link rel="shortcut icon" href="images/tristan-favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" href="styles/index-style.css">
+
+	<!-- Information -->
+	<title>Journey of Responsive Web Design Homepage</title>	
+</head>
+	
+<body>
+	<!-- Page header -->
+	<header id="page-header">
+		<div id="header-left">
+			<span class="helper"></span>
+			<!-- Loughborough Uni Logo -->
+			<picture>
+				<source media="(min-width:781px)" srcset="images/lu-logo-white.png"> 
+				<img src="images/lu-shield-white.png" alt="Loughborough Logo" id="lu-logo-header">
+			</picture>
+		</div>
+		<div id="header-right">
+			<span class="helper" id="helper-title"></span>
+			<span id="header-title">My E-Learning Journey of Mobile Application Development</span>
+		</div>
+	</header>
+
+	<!-- Page navigation -->
+	<nav>
+		<ul>
+			<li>Home</li><i id="nav-menu-icon" class="fa fa-bars fa-2x" style="display:none;"></i>
+			<li>Events</li>
+			<li>Updates</li>
+			<li>Weather</li>
+			<li id="nav-last">Guestbook</li>
+		</ul>
+	</nav>
+
+	<!-- Page section -->
+	<section id="info-section">
+		<div id="info-section-image">
+			<picture>
+				<source media="(min-width:1281px)" srcset="images/hero-image-largest.jpg"> 
+				<source media="(min-width:781px)" srcset="images/hero-image-large.jpg"> 
+				<source media="(min-width:481px)" srcset="images/hero-image-medium.jpg"> 
+				<img src="images/hero-image-small.jpg" alt="Large image of 'Low Polygon Island scene' found on Google images, modified by Tristan Murfitt." id="large-hero-image">
+			</picture>
+		</div>
+		<div id="info-section-slant"></div>
+		<div id="info-section-details">
+			<div id="info-about">
+				<div id="about-text">About Me</div>
+				<p><span>Name</span> - Tristan Murfitt</p>
+				<p><span>ID Number</span> - B418521</p>
+			</div>
+			<div id="info-objectives">
+				<div id="objectives-text">Objectives</div>
+				<p>
+					<ul class="fa-ul">
+						<li><i class="fa-li fa fa-leaf fa-fw"></i>Learn to create beautiful responsive websites.</li>
+						<li><i class="fa-li fa fa-globe fa-fw"></i>Learn to develop innovative mobile applications on Android, and later, iOS.</li>
+						<li><i class="fa-li fa fa-rocket fa-fw"></i>Learn how API's can be incorporated to achieve extra website functionality.</li>
+					</ul>
+				</p>
+			</div>
+		</div>
+	</section>
+	
+	<!-- Events section -->
+	<section id="events-section">
+		<span id="events-text">Events</span>
+		<table>
+			<thead>
+				<tr>
+					<th>Event</th>
+					<th>Time</th>
+					<th>Venue</th>
+					<th>Price</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>TEDx Loughborough</td>
+					<td>13:00<br/>April 21 2016</td>
+					<td>J002, EHB, Loughborough University</td>
+					<td>£10.00</td>
+					<td>TED Independent Event in Loughborough with experts discussing the latest innovations in Science and Technology.</td>
+				</tr>
+				<tr>
+					<td>Google Placements</td>
+					<td>15:30<br/>April 6 2016</td>
+					<td>CC012, James France, Loughborough University</td>
+					<td>Free</td>
+					<td>Alumni and staff from the Google UK Head Office are on campus to promote the placement programme at Google UK.</td>
+				</tr>
+				<tr>
+					<td>iOS App Development</td>
+					<td>10:00<br/>July 4 2016</td>
+					<td>N002, Haslegrave, Loughborough University</td>
+					<td>£14.99</td>
+					<td>Summer school session sponsored by Apple to teach teenagers iOS device application development.</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+	
+	<!-- Updates section -->
+	<section id="updates-section">
+		<span id="updates-text">Learning Updates</span>
+		<ul class="fa-ul">
+			<!-- Please note: This is dummy text created with the coursework wireframe in mind -->
+			<li><i class="fa-li fa fa-info-circle fa-fw"></i><span>July 2<sup>nd</sup> 2015</span>&nbsp; Module Selection</li>
+			<div class="update-info">Could all students in their penultimate year please choose their optional modules for the upcoming year. You can access the module list from the Departmental Information section of the LEARN homepage.</div>
+			
+			<li><i class="fa-li fa fa-graduation-cap fa-fw"></i><span>August 21<sup>st</sup> 2015</span>&nbsp; Graduation Awards</li>
+			<div class="update-info">The awards for the top-performing graduates of 2015 are being held next Monday in the Student Union. Students and visitors are welcome to attend and share the celebrations.</div>
+			
+			<li><i class="fa-li fa fa-info-circle fa-fw"></i><span>February 12<sup>th</sup> 2016</span>&nbsp; Lab Android Studio</li>
+			<div class="update-info">The labs in Haslegrave (Rooms N001, N002, N003) now have Android Studio installed under Mac and Windows OS.</div>
+		</ul>
+	</section>
+	
+	<!-- Weather section -->
+	<section id="weather-section">
+		<div id="cloud-cluster-1">
+			<div class="cloud c1"></div>
+			<div class="cloud c2"></div>
+			<div class="cloud c3"></div>
+		</div>
+		<div id="cloud-cluster-2">
+			<div class="cloud c4"></div>
+			<div class="cloud c5"></div>
+			<div class="cloud c6"></div>
+			<div class="cloud c7"></div>
+		</div>
+		<div class="sun"></div>
+		
+		<div id="weather" class="weather"></div>
+		<div class="hr"></div>
+		<div class="js-geolocation" style="display: none;">Get Weather for Your Location</div>
+		<div><i id="weather-spinner" class="fa fa-spinner fa-spin fa-3x"></i></div>
+		<div id="weather2" class="weather"></div>		
+	</section>
+
+	<!-- Page footer -->
+	<footer>
+		<p>&copy; 2016 - Tristan Murfitt - Loughborough University</p>
+	</footer>	
+</body>
+	
+</html>
