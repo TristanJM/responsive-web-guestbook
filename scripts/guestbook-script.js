@@ -99,22 +99,22 @@ function loadGuestbookData() {
 			//html += json['data'][i]['name'];
 			html += '<tr>';
 				html += '<td><img id="gb-avatar" src="'+json['data'][i]['avatar']+'"></td>';
-					html += '<td>';
-						html += '<span id="gb-name" class="gb-bold-text">'+json['data'][i]['name']+'</span><br/><span id="gb-nick">\''+json['data'][i]['nick']+'\'</span><br/><span class="gb-gap"></span>';
-							html += '<span id="gb-age">Aged '+json['data'][i]['age']+'</span><br/><span id="gb-gender">'+json['data'][i]['gender']+'</span>';
-					html += '</td>';
-					html += '<td>';
-						html += '<span class="gb-bold-text">Home</span><br/>';
-							html += '<span id="gb-home">'+json['data'][i]['hometown']+'</span>'
-								html += '<br/>';
-								html += '<span class="gb-gap"></span>';
-								html += '<span class="gb-bold-text">Current</span><br/>';
-								html += '<span class="gb-bold-text">Lat: </span><span id="gb-lat">'+json['data'][i]['lat']+'</span><br/>';
-								html += '<span class="gb-bold-text">Long: </span><span id="gb-lng">'+json['data'][i]['long']+'</span>';
-							html += '</td>';
-							html += '<td><span id="gb-message">'+json['data'][i]['message']+'</span></td>';
-							html += '<td><img id="gb-graffiti" src="'+json['data'][i]['graffiti']+'"></td>';
-						html += '</tr>';
+				html += '<td>';
+					html += '<span id="gb-name" class="gb-bold-text">'+json['data'][i]['name']+'</span><br/><span id="gb-nick">\''+json['data'][i]['nick']+'\'</span><br/><span class="gb-gap"></span>';
+					html += '<span id="gb-age">Aged '+json['data'][i]['age']+'</span><br/><span id="gb-gender">'+json['data'][i]['gender']+'</span>';
+				html += '</td>';
+				html += '<td>';
+					html += '<span class="gb-bold-text">Home</span><br/>';
+					html += '<span id="gb-home">'+json['data'][i]['hometown']+'</span>'
+					html += '<br/>';
+					html += '<span class="gb-gap"></span>';
+					html += '<span class="gb-bold-text">Current</span><br/>';
+					html += '<span class="gb-bold-text">Lat: </span><span id="gb-lat">'+json['data'][i]['lat']+'</span><br/>';
+					html += '<span class="gb-bold-text">Long: </span><span id="gb-lng">'+json['data'][i]['long']+'</span>';
+				html += '</td>';
+				html += '<td><span id="gb-message">'+json['data'][i]['message']+'</span></td>';
+				html += '<td><img id="gb-graffiti" src="'+json['data'][i]['graffiti']+'"></td>';
+			html += '</tr>';
 		}
 		$('#guestbook tbody').html(html);
 	}
