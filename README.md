@@ -8,13 +8,14 @@ A responsive website, built from scratch, using native HTML5 and CSS3 with jQuer
 * Using mobile accelerometer and gyroscope to detect and act on gestures.
 * Drawable canvas object and device-localstorage image saving.
 
+
 ## Getting started
 Simply download the project zip and load the index.html file in any browser.
 
 ```
-View the layout changes when resizing the browser window.
+View the layout & style changes when resizing the browser window.
 ```
 
 ## Built With
-* [jscolor](http://jscolor.com) - The JavaScript Colour Picker used
-* [simpleweather](http://simpleweatherjs.com) - The JavaScript weather API used
+* [jscolor](http://jscolor.com) - JavaScript Colour Picker
+* [simpleweather](http://simpleweatherjs.com) - jQuery Weather API plugin
