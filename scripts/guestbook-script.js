@@ -1,52 +1,51 @@
-//Global Variables
+// Global Variables
 var browser = "Unknown";
 var canvas,context;
-var mouseX,mouseY,mouseDown=0; //Keep track of state of mouse
-var touchX,touchY; //Keep track of touch position
+var mouseX,mouseY,mouseDown=0; // Keep track of state of mouse
+var touchX,touchY; // Keep track of touch position
 var activeForm = false;
 var tilted = false;
 
 window.onresize = checkSize;
 
-//jQuery
 $(document).ready(function(){
 	browser = checkBrowser();
 	checkSize(); 
 	
 	loadGuestbookData();
 	
-	//Pre-load hand image
+	// Pre-load hand image
 	$('<img />').attr('src',"./images/hand.png").appendTo('body').css('display','none');
 	
-	//Navigation Scroll
+	// Navigation Scroll
 	$("nav ul li").click(function() {
 		window.location = "index.html";
 	});0
 	
-	//Sign guestbook click
+	// Sign guestbook click
 	$(document).on('click','#pen-div',function(){
 		$('#sign-section').css('transform','translateY(0)');
 		$('#hand-div').css('transform','translateY(-3000px)'); //moves hand back out of view
 		initGraffiti();
 		window.addEventListener("deviceorientation", orientationEvent);
 		activeForm = true;
-		//Initialise google maps api
-		setTimeout(function() { initializeMap(); },1300 ); //initialises map after animation
+		// Initialise google maps api
+		setTimeout(function() { initializeMap(); }, 1300); //initialises map after animation
 	});
 	
-	//Geolocation on user's location
+	// Geolocation on user's location
 	$(document).on('click','#form-getlocation',function(){
 		if (navigator.geolocation) {
 			var options = {enableHighAccuracy:true};
-			//Get location
+			// Get location
 			navigator.geolocation.getCurrentPosition(function(position) {
-				//Set map
-				var map = new google.maps.Map(document.getElementById("googleMap"), {
-					center: {lat: 51.508742, lng: -0.120850},
+				// Set map
+				var map = new google.maps.Map(document.getElementById('googleMap'), {
+					center: { lat: 51.508742, lng: -0.120850 },
 					zoom: 9
 				});
-				//Use location
-				var infoWindow = new google.maps.InfoWindow({map: map});				
+				// Use location
+				var infoWindow = new google.maps.InfoWindow({ map:map });
 				var pos = {
 					lat: position.coords.latitude,
 					lng: position.coords.longitude
@@ -68,29 +67,29 @@ $(document).ready(function(){
 		}
 	});
 
-	//User's avatar from camera/file
+	// User's avatar from camera/file
 	$(document).on('change','#form-image-input',function() {
 		showAvatar();
 	});
 	
-	//Clearing the graffiti canvas on click of button
+	// Clearing the graffiti canvas on click of button
 	$(document).on('click','#tools-clear-button',function() {
 		clearCanvas();
 	});
 	
-	//Clicking the clear form button handler
+	// Clicking the clear form button handler
 	$(document).on('click','#clear-gb-btn',function() {
 		clearGbForm();
 	});
 	
-	//Clicking the SIGN form button handler
+	// Clicking the SIGN form button handler
 	$(document).on('click','#sign-gb-btn',function() {
 		saveSignFormData();
 	});
 	
 });
 
-//Load the guestbook with local storage data
+// Load the guestbook with local storage data
 function loadGuestbookData() {
 	var json = JSON.parse( localStorage.getItem("guestbookData") );
 	var html = "";
@@ -120,7 +119,7 @@ function loadGuestbookData() {
 	}
 }
 
-//Save the 'Sign Guestbook' Form data
+// Save the 'Sign Guestbook' Form data
 function saveSignFormData() {
 	var name = $('#form-name').val();
 	var nick = $('#form-nick').val();
@@ -130,10 +129,10 @@ function saveSignFormData() {
 	var hometown = $('#form-hometown').val();
 	var lat = $('#user-lat').text();
 	var long = $('#user-lng').text();
-	//get avatar
+	// get avatar
 	var c = document.getElementById("avatar");
 	var avatar = c.toDataURL(".jpg");
-	//get graffiti
+	// get graffiti
 	var graffiti = canvas.toDataURL(".jpg");
 	var newData = { "name":name, "nick":nick, "age":age, "gender":gender, "message":message, "hometown":hometown, "lat":lat, "long":long, "avatar":avatar, "graffiti":graffiti };
 	
@@ -153,7 +152,7 @@ function saveSignFormData() {
 	clearGbForm();
 }
 
-//Clear 'Sign Guestbook' Form function
+// Clear 'Sign Guestbook' Form function
 function clearGbForm() {
 	$('#form-name').val("");
 	$('#form-nick').val("");
@@ -165,12 +164,12 @@ function clearGbForm() {
 	$('#user-lat').text("");
 	$('#user-lng').text("");
 	
-	//Clear avatar canvas
+	// Clear avatar canvas
 	var c = document.getElementById("avatar");
 	var ctx = c.getContext("2d");
 	ctx.clearRect(0, 0, c.width, c.height);
 	
-	//Remove form
+	// Remove form
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 		console.log('Browser is mobile');
 	}
@@ -195,60 +194,57 @@ function clearGbForm() {
 	$('body script').remove();
 }
 
-//Graffiti functions
+// Graffiti functions
 
-	//Draw the circular dot on the canvas
+	// Draw the circular dot on the canvas
 	function drawDot(context,x,y,size) {
-		//Get the selected colour
+		// Get the selected colour
 		context.fillStyle = $('#tools-colour-control').css('background-color');
 
-		//Draw a filled circle
+		// Draw a filled circle
 		context.beginPath();
 		context.arc(x, y, size, 0, Math.PI*2, true); // Xpos, Ypos, Radius, StartAngle, EndAngle, Anti-clockwise 
 		context.closePath();
 		context.fill();
 	}
 
-	//Clear the canvas 
+	// Clear the canvas 
 	function clearCanvas() {
 		context.clearRect(0, 0, canvas.width, canvas.height);
 	}			
 
-	//Called when mouse button is pressed
+	// Called when mouse button is pressed
 	function graffiti_mouseDown() {
-		mouseDown=1;	//set var to true
+		mouseDown = 1;	//set var to true
 
-		//Get the current brush size as percentage of canvas height
+		// Get the current brush size as percentage of canvas height
 		var size = $("#graffiti").height() * ($('#brush-size-control').val()/100);
 
-		//Draw a circle
+		// Draw a circle
 		drawDot(context,mouseX,mouseY,size);
 	}
 
-	//Called when mouse button released
+	// Called when mouse button released
 	function graffiti_mouseUp() {
-		mouseDown=0;	//set var to false
+		mouseDown = 0;	// set var to false
 	}
 
-	//Track mouse position and draw circle when mouse button is held
+	// Track mouse position and draw circle when mouse button is held
 	function graffiti_mouseMove(e) {
 		// Update the mouse co-ordinates when moved
 		getMousePos(e);
 
-		//Get the current brush size as percentage of canvas height
+		// Get the current brush size as percentage of canvas height
 		var size = $("#graffiti").height() * ($('#brush-size-control').val()/100);
 
-		//Draw a circle if the mouse button is currently being pressed
-		if (mouseDown==1) {
-			drawDot(context,mouseX,mouseY,size);
-		}
+		// Draw a circle if the mouse button is currently being pressed
+		if (mouseDown === 1) drawDot(context,mouseX,mouseY,size);
 	}
 
-	//Get current mouse position relative to canvas Top Left
+	// Get current mouse position relative to canvas Top Left
 	function getMousePos(e) {
-		if (!e) {
-			var e = event;
-		}
+		if (!e) var e = event;
+		
 		if (e.offsetX) {
 			mouseX = e.offsetX;
 			mouseY = e.offsetY;
@@ -259,44 +255,44 @@ function clearGbForm() {
 		}
 	}
 
-	//Called when canvas is touched
+	// Called when canvas is touched
 	function graffiti_touchStart() {
-		//Update the touch co-ordinates
+		// Update the touch co-ordinates
 		getTouchPos();
 
-		//Get the current brush size as percentage of canvas height
+		// Get the current brush size as percentage of canvas height
 		var size = $("#graffiti").height() * ($('#brush-size-control').val()/100);
 
-		//Draw a circle at touch location
+		// Draw a circle at touch location
 		drawDot(context,touchX,touchY,size);
 
 		// Prevents an additional mousedown event being triggered
 		event.preventDefault();
 	}
 
-	//Called on touch-move, draw circle and prevent the default scrolling
+	// Called on touch-move, draw circle and prevent the default scrolling
 	function graffiti_touchMove(e) { 
-		//Update the touch co-ordinates
+		// Update the touch co-ordinates
 		getTouchPos(e);
 
-		//Get the current brush size as percentage of canvas height
+		// Get the current brush size as percentage of canvas height
 		var size = $("#graffiti").height() * ($('#brush-size-control').val()/100);
 
-		//Draw the circle
+		// Draw the circle
 		drawDot(context,touchX,touchY,size); 
 
-		//Prevent the default scrolling
+		// Prevent the default scrolling
 		event.preventDefault();
 	}
 
-	//Gets the touch position in canvas
+	// Gets the touch position in canvas
 	function getTouchPos(e) {
 		if (!e) {
 			var e = event;
 		}
 		if(e.touches) {
 			if (e.touches.length == 1) { 	//One finger touch limit
-				//Get touch location
+				// Get touch location
 				var touch = e.touches[0];
 				touchX=touch.pageX-touch.target.offsetLeft;
 				touchY=touch.pageY-$('#graffiti').offset().top;
@@ -304,23 +300,21 @@ function clearGbForm() {
 		}
 	}
 
-	//Initialise the graffiti canvas and apply event handlers
+	// Initialise the graffiti canvas and apply event handlers
 	function initGraffiti() {
 		console.log('initGraffiti() called');
 		
 		window.addEventListener("devicemotion", shakeEvent);
 
-		//Get the canvas element
+		// Get the canvas element
 		canvas = document.getElementById('graffiti');
 		canvas.width = $('#graffiti').width();
 		canvas.height = $('#graffiti').height();
 
-		//If the browser supports the canvas tag, get the 2d drawing context
-		if (canvas.getContext) {
-			context = canvas.getContext('2d');
-		}
+		// If the browser supports the canvas tag, get the 2d drawing context
+		if (canvas.getContext) context = canvas.getContext('2d');
 
-		//Check that we have a valid context to draw on/with before adding event handlers
+		// Check that we have a valid context to draw on/with before adding event handlers
 		if (context) {
 			// React to mouse events on the canvas, and mouseup on the entire document
 			canvas.addEventListener('mousedown', graffiti_mouseDown, false);
@@ -332,10 +326,9 @@ function clearGbForm() {
 			canvas.addEventListener('touchmove', graffiti_touchMove, false);
 		}
 	}
+// End of Graffiti functions
 
-//End of Graffiti functions
-
-//Function to check for device shakes (clears graffiti canvas)
+// Function to check for device shakes (clears graffiti canvas)
 function shakeEvent(event){
 	if (activeForm) {
 		var threshold=20;
@@ -345,63 +338,55 @@ function shakeEvent(event){
 	}
 }
 
-//Function to check for orientation for form quit
+// Function to check for orientation for form quit
 function orientationEvent(event){
 	if (activeForm) {
-		var dir = Math.round(event.alpha);
-		var tiltFB=Math.round(event.beta);
-		var tiltLR=Math.round(event.gamma);
+		var dir = Math.round(event.alpha);		// Direction
+		var tiltFB = Math.round(event.beta);	// Front-Back tilt
+		var tiltLR = Math.round(event.gamma); // Left-Right tilt
 		
 		if (tiltLR < -25 && !tilted) {
 			tilted = true;
 			var r = confirm("Do you want to clear this form?\nAll your progress will be lost!");
-			if (r == true) {
-				clearGbForm();
-			} 
-			else {
-				console.log("User selected not to clear form");
-				setTimeout(function() { tilted = false; },1000); //set tilted back to false after a short delay
-			}
+			
+			if (r == true) clearGbForm();
+			else setTimeout(function() { tilted = false },1000); // set tilted back to false after a short delay
 		}
 		else if (tiltLR > 25 && !tilted) {
 			tilted = true;
 			var r = confirm("Do you want to sign the guestbook with this form?");
-			if (r == true) {
-				saveSignFormData();
-			} 
-			else {
-				console.log("User selected not to clear form");
-				setTimeout(function() { tilted = false; },1000); //set tilted back to false after a short delay
-			}
+			if (r == true) saveSignFormData();
+			else setTimeout(function() { tilted = false },1000); // set tilted back to false after a short delay
 		}
 	}
 }
 
-//Reads in image from camera/file and shows in canvas
+// Reads in image from camera/file and shows in canvas
 function showAvatar() {
 	var input = document.getElementById('form-image-input');	
 	var file = input.files[0];
 	
 	var c = document.getElementById("avatar");
-	//create context drawing object
+	// create context drawing object
 	var ctx = c.getContext("2d");
 	
-	//use HTML5 FileReader API to read the image file as dataURL
+	// use HTML5 FileReader API to read the image file as dataURL
 	var reader = new FileReader();
 	reader.readAsDataURL(file);
-	//when the read is successful
+	
+	// once the file read is successful
 	reader.onload = function (e) {
-		//clear the old canvas
+		// clear the old canvas
 		ctx.clearRect(0, 0, c.width, c.height);
-		//use the dataURL to create an image element
+		// use the dataURL to create an image element
 		var dataURL = e.target.result,
 		img = new Image();
 		img.src = dataURL;
 		img.onload = function() {
-			//set the width and height of canvas
+			// set the width and height of canvas
 			c.width = img.width;
 			c.height = img.height;
-			//draw the image on canvas
+			// draw the image on canvas
 			ctx.drawImage(img, 0, 0);
 		};
 	};
@@ -409,12 +394,12 @@ function showAvatar() {
 	$('#avatar').css('width','100');
 }
 
-//Called on ready and every time browser is resized
+// Called on ready and every time browser is resized
 function checkSize() {
-	//Fix issues of individual browsers on resizing
+	// Fix issues of individual browsers on resizing
 	fixBrowserIssues();
 	
-	//If the "Guestbook Sign" form is expanded, resize the canvas
+	// If the "Guestbook Sign" form is expanded, resize the canvas
 	if ($('#sign-section').attr('style') == "transform: translateY(0px);") {
 		canvas.width = $('#graffiti').width();
 		canvas.height = $('#graffiti').height();
@@ -422,14 +407,14 @@ function checkSize() {
 	}
 }
 
-//Loads Google Maps Asynchronously
+// Loads Google Maps Asynchronously
 function initializeMap() {
 	var script = document.createElement("script");
   script.src = "http://maps.googleapis.com/maps/api/js?callback=initialize";
   document.body.appendChild(script);
 }
 
-//Initialise Google Maps API (must use initialiZe for callback)
+// Initialise Google Maps API (must use initialiZe for callback)
 function initialize() {
 	var mapProp = {
 		center:new google.maps.LatLng(51.508742,-0.120850),
@@ -439,26 +424,17 @@ function initialize() {
 	var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 }
 
-//Checks what browser is being used
+// Checks what browser is being used
 function checkBrowser() {
 	$.mobile.pushStateEnabled = false;	
 	var browser = "Non-webkit";	
 	var userAgent = navigator.userAgent.toLowerCase(); 
-	if (userAgent .indexOf('safari')!=-1){ 
-		if(userAgent .indexOf('chrome')  > -1){
-			//browser is chrome
-			browser = "Chrome";
-		}
-		else if((userAgent .indexOf('opera')  > -1)||(userAgent .indexOf('opr')  > -1)){
-			//browser is opera 
-			browser = "Opera";
-		}
-		else{
-			//browser is safari
-			browser = "Safari";
-		}
+	if (userAgent.indexOf('safari') != -1) { 
+		if(userAgent.indexOf('chrome') > -1) return "Chrome";
+		else if((userAgent .indexOf('opera')  > -1)||(userAgent .indexOf('opr')  > -1)) return "Opera";
+		else return "Safari";
 	}
-	return browser;
+	return null;
 }
 
 //Javascipt to fix any issues with individual browsers
