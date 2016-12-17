@@ -1,24 +1,22 @@
-//Global Variables
 var browser = "Unknown";
 
+// Check the size of the browser window on resize event
 window.onresize = checkSize;
 
-//jQuery
 $(document).ready(function(){
 	browser = checkBrowser();
 	checkSize(); 
 	
-	//Navigation Scroll
+	// Navigation Scroll
 	$("nav ul li").click(function() {
-		console.log('called');
 		var elem = $(this).text();
 		var elemid = "#page-header";
-		if (elem == "Guestbook") { 
-			//relocate to guestbook page
+		if (elem === "Guestbook") { 
+			// relocate to guestbook page
 			window.location = "guestbook.html";
 		}
 		else if (elem == "Home") {
-			//relocate to home page
+			// relocate to home page
 			window.location = "index.html";
 		}
 		else {			
@@ -109,7 +107,7 @@ function loadWeather(location) {
   });
 }
 
-//Called on ready and every time browser is resized
+// Called on ready and every time browser is resized
 function checkSize() {
 	//Fix issues of individual browsers on resizing
 	fixBrowserIssues();
